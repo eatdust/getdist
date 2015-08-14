@@ -709,6 +709,15 @@ class WeightedSamples(object):
         self.loglikes = newL
         self._weightsChanged()
 
+    def rescaleLoglike(self, factor):
+        """
+        Rescales the the -ln(like) read from the chains, as for
+        instance to normalize multinest output to -ln(like) instead of
+        -2 ln(like) :param factor: rescaleLoglike factor
+        """
+        newL = self.loglikes * factor
+        self.loglikes = newL
+
     def deleteZeros(self):
         """
         Removes samples with zero weight

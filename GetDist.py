@@ -78,6 +78,7 @@ def main(args):
     make_single_samples = ini.bool('make_single_samples', False)
     single_thin = ini.int('single_thin', 1)
     cool = ini.float('cool', 1.0)
+    rescale = ini.float('rescale_loglike',1.0)
 
     chain_exclude = ini.int_list('exclude_chain')
 
@@ -157,6 +158,11 @@ def main(args):
     if cool != 1:
         print('Cooling chains by ', cool)
         mc.cool(cool)
+
+    if rescale != 1:
+        print('Rescaling log(like) by ',rescale)
+        mc.rescaleLoglike(rescale)
+            
 
     mc.updateBaseStatistics()
 
