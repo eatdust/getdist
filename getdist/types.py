@@ -768,7 +768,7 @@ class LikeStats(ParamResults):
             if len(line.strip()) == 0: break
             name, value = [x.strip() for x in line.split('=')]
             results[name] = float(value)
-        self.logLike_sample = results.get('Best fit sample -Ln(Like)', None)
+        self.logLike_sample = results.get('Best fit sample -log(Like)', None)
         self.logMeanInvLike = results.get('Ln(mean 1/like)', None)
         self.meanLogLike = results.get('mean(-Ln(like))', None)
         self.logMeanLike = results.get('-Ln(mean like)', None)
