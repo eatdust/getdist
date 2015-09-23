@@ -74,7 +74,9 @@ def loadNumpyTxt(fname, skiprows=None):
     if use_pandas:
         return pandas.read_csv(fname, delim_whitespace=True, header=None, dtype=np.float64, skiprows=skiprows).values
     else:
-        return np.genfromtxt(fname, skiprows=skiprows, invalid_raise=False)
+        loaded = np.loadtxt(fname, skiprows=skiprows)
+#ignore NaN lines
+        return loaded[~np.isnan(loaded).any(axis=1)]
 
 
 def getSignalToNoise(C, noise=None, R=None, eigs_only=False):
